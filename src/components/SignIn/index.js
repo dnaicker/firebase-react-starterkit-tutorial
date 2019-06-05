@@ -4,7 +4,7 @@ import { compose } from "recompose";
 
 import { SignUpLink } from "../SignUp";
 import { withFirebase } from "../Firebase";
-import * as ROUTES from "../constants/routes";
+import * as ROUTES from "../../constants/routes";
 
 const SignInPage = () => (
   <div>
@@ -44,8 +44,7 @@ class SignInFormBase extends Component {
   };
 
   onChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
