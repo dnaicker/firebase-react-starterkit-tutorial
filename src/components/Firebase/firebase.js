@@ -1,14 +1,6 @@
-/**
-  apiKey: "AIzaSyCO-XymQ_bNlKdpjfo8QL_hWKs63uJkOJI",
-  authDomain: "kriskraai-e6c8c.firebaseapp.com",
-  databaseURL: "https://kriskraai-e6c8c.firebaseio.com",
-  projectId: "kriskraai-e6c8c",
-  storageBucket: "kriskraai-e6c8c.appspot.com",
-  messagingSenderId: "368397077198",
-  appId: "1:368397077198:web:90387eab19e4cd72"
-**/
 import app from "firebase/app";
 import "firebase/auth";
+import "firebase/database";
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -24,7 +16,9 @@ class Firebase {
     app.initializeApp(config);
 
     this.auth = app.auth();
+    this.db = app.database();
   }
+
   // *** Auth API ***
 
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -34,9 +28,16 @@ class Firebase {
     this.auth.signInWithEmailAndPassword(email, password);
 
   doSignOut = () => this.auth.signOut();
+
   doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
 
   doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
+
+  // *** User API ***
+
+  user = uid => this.db.ref(`users/${uid}`);
+
+  users = () => this.db.ref("users");
 }
 
 export default Firebase;
