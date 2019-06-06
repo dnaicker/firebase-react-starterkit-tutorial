@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
 import { withFirebase } from "../Firebase";
-import * as ROUTES from "../constants/routes";
+import * as ROUTES from "../../constants/routes";
 
 const SignUpPage = () => (
   <div>
@@ -44,7 +44,8 @@ class SignUpFormBase extends Component {
 
   onChange = event => {
     this.setState({
-      [event.target.name]: event.target.value });
+      [event.target.name]: event.target.value
+    });
   };
 
   render() {
